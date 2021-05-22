@@ -12,7 +12,7 @@ const drawImage = (imageProperties, palette) => {
 
     for (i = 0; i < horizontalPieces; i++) {
         for (j = 0; j < verticalPieces; j++) {
-            const figure = Math.floor(Math.random() * 7);
+            const figure = Math.floor(Math.random() * 8);
 
             switch (figure) {
                 case 0:
@@ -32,6 +32,9 @@ const drawImage = (imageProperties, palette) => {
                     break;
                 case 5:
                     drawFigure5(imageProperties, context, palette, i, j);
+                    break;
+                case 6:
+                    drawFigure6(imageProperties, context, palette, i, j);
                     break;
                 default:
                     drawBlankPiece(imageProperties, context, palette, i, j);
@@ -115,7 +118,7 @@ function drawFigure2(imageProperties, context, palette, i, j) {
 
     context.beginPath();
     context.moveTo(0, 0);
-    context.lineTo(imageProperties.piece / 2, imageProperties.piece);
+    context.lineTo(imageProperties.piece / 2, imageProperties.piece / 2);
     context.lineTo(imageProperties.piece, 0);
 
     context.fillStyle = color;
@@ -198,6 +201,24 @@ function drawFigure5(imageProperties, context, palette, i, j) {
 
     context.fillStyle = color;
     context.fill();
+
+    context.restore();
+    context.closePath();
+}
+
+function drawFigure6(imageProperties, context, palette, i, j) {
+    const bgColor = drawBackground(imageProperties, context, palette, i, j);
+
+    do {
+        var color = palette[Math.floor(Math.random() * palette.length)];
+    } while (color == bgColor);
+
+    context.save();
+    context.translate(i * imageProperties.piece, j * imageProperties.piece);
+
+    context.fillStyle = color;
+    context.fillRect(3 * imageProperties.piece / 8, 0, imageProperties.piece / 4, imageProperties.piece);
+    context.fillRect(1 * imageProperties.piece / 8, 2 * imageProperties.piece / 4, 3 * imageProperties.piece / 4, 1 * imageProperties.piece / 4);
 
     context.restore();
     context.closePath();

@@ -14,17 +14,9 @@ const drawImage = (palette) => {
         var color = palette[Math.floor(Math.random() * palette.length)];
     } while (color == backgroundColor);
 
-    context.save();
-    context.translate(0, 0);
-
-    context.beginPath();
-    context.arc(testImageSize / 2, testImageSize / 2, testImageSize / 2, 0, 2 * Math.PI, false);
-
     context.fillStyle = color;
-    context.fill();
-
-    context.restore();
-    context.closePath();
+    context.fillRect(3 * testImageSize / 8, 0, testImageSize / 4, testImageSize);
+    context.fillRect(1 * testImageSize / 8, 2 * testImageSize / 4, 3 * testImageSize / 4, 1 * testImageSize / 4);
 
     const buffer = canvas.toBuffer('image/png');
 
