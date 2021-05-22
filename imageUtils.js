@@ -75,10 +75,10 @@ const getImageProperties = () => {
 const createPalette = (paletteSize) => {
     const palette = [];
     const colorHexSize = 6;
-    const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('')
+    const genRandHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('')
 
     for (i = 0; i < paletteSize; i++) {
-        palette.push('#' + genRanHex(colorHexSize));
+        palette.push('#' + genRandHex(colorHexSize));
     }
 
     return palette;
