@@ -1,0 +1,15 @@
+{
+  "name": "collage-creator",
+  "version": "0.0.1",
+  "description": "A simple collage creator",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gaizka DC",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.8.0",
+    "prompt-sync": "^4.2.0"
+  }
+}
