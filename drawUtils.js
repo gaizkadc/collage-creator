@@ -42,7 +42,7 @@ const drawImage = (imageProperties, palette) => {
 
     const buffer = canvas.toBuffer('image/png');
 
-    fs.writeFileSync('./test.png', buffer);
+    fs.writeFileSync('./collage.png', buffer);
 }
 
 function drawBlankPiece(imageProperties, context, palette, i, j) {
