@@ -10,7 +10,7 @@ const drawImage = (imageProperties, palette) => {
     const horizontalPieces = imageProperties.width / imageProperties.piece;
     const verticalPieces = imageProperties.height / imageProperties.piece;
 
-    const figures = [drawFigure0, drawFigure1, drawFigure2, drawFigure3, drawFigure4, drawFigure5, drawFigure6, drawFigure7, drawFigure8];
+    const figures = [drawFigure0, drawFigure1, drawFigure2, drawFigure3, drawFigure4, drawFigure5, drawFigure6, drawFigure7];
 
     for (i = 0; i < horizontalPieces; i++) {
         for (j = 0; j < verticalPieces; j++) {
@@ -19,9 +19,9 @@ const drawImage = (imageProperties, palette) => {
         }
     }
 
-    const buffer = canvas.toBuffer('image/png');
+    const buffer = canvas.toBuffer('image/jpeg');
 
-    fs.writeFileSync('./collage.png', buffer);
+    fs.writeFileSync('./collage.jpg', buffer);
 }
 
 // Blank

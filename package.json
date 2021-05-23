@@ -10,6 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "canvas": "^2.8.0",
-    "prompt-sync": "^4.2.0"
+    "dotenv": "^10.0.0",
+    "instagram-web-api": "^2.2.2",
+    "prompt-sync": "^4.2.0",
+    "tough-cookie-filestore2": "^1.0.0"
   }
 }

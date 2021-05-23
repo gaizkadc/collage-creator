@@ -4,7 +4,7 @@ const {
 const fs = require('fs');
 
 const drawImage = (palette) => {
-    const testImageSize = 200;
+    const testImageSize = 1000;
     const canvas = createCanvas(testImageSize, testImageSize);
     const context = canvas.getContext('2d');
 
