@@ -12,40 +12,10 @@ const drawImage = (imageProperties, palette) => {
 
     for (i = 0; i < horizontalPieces; i++) {
         for (j = 0; j < verticalPieces; j++) {
-            const figure = Math.floor(Math.random() * 10);
+            const figures = [drawFigure0, drawFigure1, drawFigure2, drawFigure3, drawFigure4, drawFigure5, drawFigure6, drawFigure7, drawFigure8];
+            const figureIndex = Math.floor(Math.random() * figures.length);
 
-            switch (figure) {
-                case 0:
-                    drawFigure0(imageProperties, context, palette, i, j);
-                    break;
-                case 1:
-                    drawFigure1(imageProperties, context, palette, i, j);
-                    break;
-                case 2:
-                    drawFigure2(imageProperties, context, palette, i, j);
-                    break;
-                case 3:
-                    drawFigure3(imageProperties, context, palette, i, j);
-                    break;
-                case 4:
-                    drawFigure4(imageProperties, context, palette, i, j);
-                    break;
-                case 5:
-                    drawFigure5(imageProperties, context, palette, i, j);
-                    break;
-                case 6:
-                    drawFigure6(imageProperties, context, palette, i, j);
-                    break;
-                case 7:
-                    drawFigure7(imageProperties, context, palette, i, j);
-                    break;
-                case 8:
-                    drawFigure8(imageProperties, context, palette, i, j);
-                    break;
-                default:
-                    drawBlankPiece(imageProperties, context, palette, i, j);
-            }
-
+            figures[figureIndex](imageProperties, context, palette, i, j);
         }
     }
 
@@ -54,13 +24,7 @@ const drawImage = (imageProperties, palette) => {
     fs.writeFileSync('./collage.png', buffer);
 }
 
-function drawBlankPiece(imageProperties, context, palette, i, j) {
-    const color = palette[Math.floor(Math.random() * palette.length)];
-
-    context.fillStyle = color;
-    context.fillRect(i * imageProperties.piece, j * imageProperties.piece, imageProperties.piece, imageProperties.piece);
-}
-
+// Blank
 function drawBackground(imageProperties, context, palette, i, j) {
     const color = palette[Math.floor(Math.random() * palette.length)];
 
