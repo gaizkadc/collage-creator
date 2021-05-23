@@ -18,6 +18,8 @@ const postToIg = (palette) => {
     })
 
     igCaption = generateIgCaption(palette);
+    console.log(igCaption);
+
     collage = 'collage.jpg';
 
     ;
@@ -57,11 +59,12 @@ function getFormattedDate(date) {
     let year = date.getFullYear();
     let month = (1 + date.getMonth()).toString().padStart(2, '0');
     let day = date.getDate().toString().padStart(2, '0');
+    let hour = date.getHours().toString();
 
-    return year + month + day;
+    return year + month + day + ' | ' + hour;
 }
 
-function generatePaletteString(palette) { 
+function generatePaletteString(palette) {
     const paletteString = '\nPalette: [' + palette[0] + ', ' + palette[1] + ', ' + palette[2] + ']';
 
     return paletteString;
