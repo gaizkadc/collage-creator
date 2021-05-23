@@ -47,7 +47,7 @@ function generateIgCaption(palette) {
 
     const paletteString = generatePaletteString(palette);
 
-    const hashtags = '\n#collageoftheday #cotd #grayscale #blacknwhite #bnw #blackandwhite #bw'
+    const hashtags = '\n#collageoftheday #cotd #collageart #collageartwork #digitalcollage #patchwork #digitalpatchwork #grayscale #blacknwhite #bnw #blackandwhite #bw'
 
     const igCaption = '#Collage ' + todayString + paletteString + hashtags;
 
