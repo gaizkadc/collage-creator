@@ -16,12 +16,6 @@ const getImageProperties = () => {
     console.log('[3] Many (20)');
     const pieces = prompt('Pieces: ');
 
-    console.log('Palette size');
-    console.log('[2] Two-color palette');
-    console.log('[3] Three-color palette');
-    console.log('[4] Four-color palette');
-    const palette = prompt('Palette: ');
-
     var imageWidth, imageHeight, pieceSize = 0;
 
     switch (parseInt(size)) {
@@ -53,26 +47,15 @@ const getImageProperties = () => {
             pieceSize = imageWidth / 10;
     }
 
-    switch (parseInt(palette)) {
-        case 2:
-            paletteSize = 2;
-            break;
-        case 4:
-            paletteSize = 4;
-            break;
-        default:
-            paletteSize = 3;
-    }
-
     return {
         width: imageWidth,
         height: imageHeight,
-        piece: pieceSize,
-        palette: paletteSize
+        piece: pieceSize
     };
 }
 
-const createPalette = (paletteSize) => {
+const createPalette = () => {
+    const paletteSize = 3;
     const palette = [];
     const colorHexSize = 6;
     const genRandHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('')

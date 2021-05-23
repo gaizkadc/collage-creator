@@ -12,7 +12,7 @@ const drawImage = (imageProperties, palette) => {
 
     for (i = 0; i < horizontalPieces; i++) {
         for (j = 0; j < verticalPieces; j++) {
-            const figure = Math.floor(Math.random() * 8);
+            const figure = Math.floor(Math.random() * 10);
 
             switch (figure) {
                 case 0:
@@ -35,6 +35,12 @@ const drawImage = (imageProperties, palette) => {
                     break;
                 case 6:
                     drawFigure6(imageProperties, context, palette, i, j);
+                    break;
+                case 7:
+                    drawFigure7(imageProperties, context, palette, i, j);
+                    break;
+                case 8:
+                    drawFigure8(imageProperties, context, palette, i, j);
                     break;
                 default:
                     drawBlankPiece(imageProperties, context, palette, i, j);
@@ -64,6 +70,7 @@ function drawBackground(imageProperties, context, palette, i, j) {
     return color;
 }
 
+// Circle
 function drawFigure0(imageProperties, context, palette, i, j) {
     const bgColor = drawBackground(imageProperties, context, palette, i, j);
 
@@ -84,6 +91,7 @@ function drawFigure0(imageProperties, context, palette, i, j) {
     context.closePath();
 }
 
+// Triangle half square 1
 function drawFigure1(imageProperties, context, palette, i, j) {
     const bgColor = drawBackground(imageProperties, context, palette, i, j);
 
@@ -106,6 +114,7 @@ function drawFigure1(imageProperties, context, palette, i, j) {
     context.closePath();
 }
 
+// Envelope
 function drawFigure2(imageProperties, context, palette, i, j) {
     const bgColor = drawBackground(imageProperties, context, palette, i, j);
 
@@ -128,6 +137,7 @@ function drawFigure2(imageProperties, context, palette, i, j) {
     context.closePath();
 }
 
+// Pyramid from above
 function drawFigure3(imageProperties, context, palette, i, j) {
     const bgColor = drawBackground(imageProperties, context, palette, i, j);
 
@@ -158,6 +168,7 @@ function drawFigure3(imageProperties, context, palette, i, j) {
     context.closePath();
 }
 
+// Two half-circles facing each other
 function drawFigure4(imageProperties, context, palette, i, j) {
     const bgColor = drawBackground(imageProperties, context, palette, i, j);
 
@@ -184,6 +195,7 @@ function drawFigure4(imageProperties, context, palette, i, j) {
     context.closePath();
 }
 
+// Triangle half square 2
 function drawFigure5(imageProperties, context, palette, i, j) {
     const bgColor = drawBackground(imageProperties, context, palette, i, j);
 
@@ -206,6 +218,7 @@ function drawFigure5(imageProperties, context, palette, i, j) {
     context.closePath();
 }
 
+// Antichrist
 function drawFigure6(imageProperties, context, palette, i, j) {
     const bgColor = drawBackground(imageProperties, context, palette, i, j);
 
@@ -218,7 +231,68 @@ function drawFigure6(imageProperties, context, palette, i, j) {
 
     context.fillStyle = color;
     context.fillRect(3 * imageProperties.piece / 8, 0, imageProperties.piece / 4, imageProperties.piece);
-    context.fillRect(1 * imageProperties.piece / 8, 2 * imageProperties.piece / 4, 3 * imageProperties.piece / 4, 1 * imageProperties.piece / 4);
+    context.fillRect(1 * imageProperties.piece / 8, 2 * imageProperties.piece / 4, 3 * imageProperties.piece / 4, imageProperties.piece / 4);
+
+    context.restore();
+    context.closePath();
+}
+
+// X
+function drawFigure7(imageProperties, context, palette, i, j) {
+    const bgColor = drawBackground(imageProperties, context, palette, i, j);
+
+    do {
+        var color = palette[Math.floor(Math.random() * palette.length)];
+    } while (color == bgColor);
+
+    context.save();
+    context.translate(i * imageProperties.piece + imageProperties.piece * 0.5, j * imageProperties.piece + imageProperties.piece * 0.5);
+
+    context.fillStyle = color;
+    context.rotate(45 * Math.PI / 180);
+
+    context.fillRect(-3 * imageProperties.piece / 8, -1 * imageProperties.piece / 8, 3 * imageProperties.piece / 4, imageProperties.piece / 4);
+
+    context.rotate(90 * Math.PI / 180);
+    context.fillRect(-3 * imageProperties.piece / 8, -1 * imageProperties.piece / 8, 3 * imageProperties.piece / 4, imageProperties.piece / 4);
+
+    context.restore();
+    context.closePath();
+}
+
+// Half square 1 + X
+function drawFigure8(imageProperties, context, palette, i, j) {
+    const bgColor = drawBackground(imageProperties, context, palette, i, j);
+
+    do {
+        var color1 = palette[Math.floor(Math.random() * palette.length)];
+        var color2 = palette[Math.floor(Math.random() * palette.length)];
+    } while (color1 == bgColor || color2 == bgColor || color1 == color2);
+
+    context.save();
+
+    context.translate(i * imageProperties.piece, j * imageProperties.piece);
+    context.beginPath();
+    context.moveTo(0, 0);
+    context.lineTo(0, imageProperties.piece);
+    context.lineTo(imageProperties.piece, 0);
+
+    context.fillStyle = color1;
+    context.fill();
+
+    context.restore();
+    context.closePath();
+
+    context.save();
+    context.translate(i * imageProperties.piece + imageProperties.piece * 0.5, j * imageProperties.piece + imageProperties.piece * 0.5);
+
+    context.fillStyle = color2;
+    context.rotate(45 * Math.PI / 180);
+
+    context.fillRect(-3 * imageProperties.piece / 8, -1 * imageProperties.piece / 8, 3 * imageProperties.piece / 4, imageProperties.piece / 4);
+
+    context.rotate(90 * Math.PI / 180);
+    context.fillRect(-3 * imageProperties.piece / 8, -1 * imageProperties.piece / 8, 3 * imageProperties.piece / 4, imageProperties.piece / 4);
 
     context.restore();
     context.closePath();

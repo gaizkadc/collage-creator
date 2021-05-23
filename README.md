@@ -13,5 +13,5 @@ node app.js
 
 ## Enjoy
 ```
-open test.png
+open collage.png
 ```
