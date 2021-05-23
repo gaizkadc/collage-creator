@@ -16,6 +16,8 @@ const getImageProperties = () => {
     console.log('[3] Many (20)');
     const pieces = prompt('Pieces: ');
 
+    const grayscale = prompt('Grayscale: ');
+
     var imageWidth, imageHeight, pieceSize = 0;
 
     switch (parseInt(size)) {
@@ -47,21 +49,34 @@ const getImageProperties = () => {
             pieceSize = imageWidth / 10;
     }
 
+    var gsBool = false;
+    if (grayscale == 'y') {
+        gsBool = true;
+    }
+
     return {
         width: imageWidth,
         height: imageHeight,
-        piece: pieceSize
+        piece: pieceSize,
+        grayscale: gsBool
     };
 }
 
-const createPalette = () => {
+const createPalette = (grayscale) => {
     const paletteSize = 3;
     const palette = [];
     const colorHexSize = 6;
     const genRandHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('')
 
-    for (i = 0; i < paletteSize; i++) {
-        palette.push('#' + genRandHex(colorHexSize));
+    if (grayscale) {
+        for (i = 0; i < paletteSize; i++) {
+            const hexLetter = genRandHex(colorHexSize)[0];
+            palette.push('#' + hexLetter.repeat(3));
+        }
+    } else {
+        for (i = 0; i < paletteSize; i++) {
+            palette.push('#' + genRandHex(colorHexSize));
+        }
     }
 
     return palette;

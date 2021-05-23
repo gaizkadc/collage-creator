@@ -10,11 +10,11 @@ const drawImage = (imageProperties, palette) => {
     const horizontalPieces = imageProperties.width / imageProperties.piece;
     const verticalPieces = imageProperties.height / imageProperties.piece;
 
+    const figures = [drawFigure0, drawFigure1, drawFigure2, drawFigure3, drawFigure4, drawFigure5, drawFigure6, drawFigure7, drawFigure8];
+
     for (i = 0; i < horizontalPieces; i++) {
         for (j = 0; j < verticalPieces; j++) {
-            const figures = [drawFigure0, drawFigure1, drawFigure2, drawFigure3, drawFigure4, drawFigure5, drawFigure6, drawFigure7, drawFigure8];
             const figureIndex = Math.floor(Math.random() * figures.length);
-
             figures[figureIndex](imageProperties, context, palette, i, j);
         }
     }
