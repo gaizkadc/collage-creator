@@ -1,13 +1,36 @@
 const prompt = require('prompt-sync')({
     sigint: true
 });
+require('dotenv').config();
 
 const getImageProperties = () => {
+    const width = parseInt(process.env.COLLAGE_WIDTH);
+    const height = parseInt(process.env.COLLAGE_HEIGHT);
+
+    var numberPieces = parseInt(process.env.NUMBER_PIECES);
+
+    if (numberPieces == 0) {
+        const possiblePiecesNumber = [5, 8, 10, 20];
+        const pieceIndex = Math.floor(Math.random() * possiblePiecesNumber.length);
+
+        console.log('piece index: ' + pieceIndex);
+
+        numberPieces = possiblePiecesNumber[pieceIndex];
+    }
+
+    const pieceSize = width / numberPieces;
+    console.log('piece size: ' + pieceSize);
+
+    var grayscale = false;
+    if (process.env.GRAYSCALE == 1) {
+        grayscale = true;
+    }
+
     return {
-        width: 1000,
-        height: 1000,
-        piece: 100,
-        grayscale: true
+        width: width,
+        height: height,
+        piece: pieceSize,
+        grayscale: grayscale
     };
 }
 
@@ -20,8 +43,8 @@ const createPalette = (grayscale) => {
     if (grayscale) {
         do {
             for (i = 0; i < paletteSize; i++) {
-                const hexLetter = genRandHex(colorHexSize)[0];
-                palette.push('#' + hexLetter.repeat(3));
+                var greyTone = genRandHex(colorHexSize).substr(0, 2).repeat(3);
+                palette.push('#' + greyTone);
             }
         } while (palette[0] == palette[1] || palette[0] == palette[2] || palette[1] == palette[2]);
     } else {

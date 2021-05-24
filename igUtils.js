@@ -1,15 +1,12 @@
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config();
-}
+require('dotenv').config();
 
 const Instagram = require('instagram-web-api')
 const FileCookieStore = require('tough-cookie-filestore2')
 
+const username = process.env.USERNAME;
+const password = process.env.PASSWORD;
 
 const postToIg = (palette) => {
-    const username = process.env.USERNAME;
-    const password = process.env.PASSWORD;
-
     const cookieStore = new FileCookieStore('./cookies.json')
     const client = new Instagram({
         username,
@@ -41,6 +38,17 @@ const postToIg = (palette) => {
     })()
 };
 
+const checkIgLogin = () => {
+    const client = new Instagram({ username, password })
+ 
+    ;(async () => {
+      await client.login()
+      const profile = await client.getProfile()
+     
+      console.log(profile)
+    })()
+};
+
 function generateIgCaption(palette) {
     const today = new Date();
     const todayString = getFormattedDate(today);
@@ -60,8 +68,9 @@ function getFormattedDate(date) {
     let month = (1 + date.getMonth()).toString().padStart(2, '0');
     let day = date.getDate().toString().padStart(2, '0');
     let hour = date.getHours().toString();
+    let minute = date.getMinutes().toString();
 
-    return year + month + day + ' | ' + hour;
+    return year + month + day + ' | ' + hour + ':' + minute;
 }
 
 function generatePaletteString(palette) {
@@ -71,3 +80,4 @@ function generatePaletteString(palette) {
 }
 
 exports.postToIg = postToIg;
+exports.checkIgLogin = checkIgLogin;
