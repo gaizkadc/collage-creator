@@ -10,7 +10,7 @@ const getImageProperties = () => {
     var numberPieces = parseInt(process.env.NUMBER_PIECES);
 
     if (numberPieces == 0) {
-        const possiblePiecesNumber = [5, 8, 10, 20];
+        const possiblePiecesNumber = [5, 8, 10];
         const pieceIndex = Math.floor(Math.random() * possiblePiecesNumber.length);
 
         console.log('piece index: ' + pieceIndex);
