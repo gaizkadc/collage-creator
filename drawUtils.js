@@ -2,6 +2,7 @@ const {
     createCanvas
 } = require('canvas')
 const fs = require('fs');
+require('dotenv').config();
 
 const drawImage = (imageProperties, palette) => {
     const canvas = createCanvas(imageProperties.width, imageProperties.height);
@@ -19,9 +20,9 @@ const drawImage = (imageProperties, palette) => {
         }
     }
 
-    const buffer = canvas.toBuffer('image/jpeg');
+    const buffer = canvas.toBuffer('image/' + process.env.FORMAT);
 
-    fs.writeFileSync('./collage.jpg', buffer);
+    fs.writeFileSync('./collage.' + process.env.FORMAT, buffer);
 }
 
 // Blank

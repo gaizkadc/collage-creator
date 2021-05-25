@@ -20,7 +20,9 @@ du.drawImage(imageProperties, palette);
 if (process.env.DRY_RUN == 1) {
     console.log('checking instagram login');
     ig,ig.checkIgLogin();
-} else {
+} else if (process.env.DRY_RUN == 0) {
     console.log('posting to instagram...');
     ig.postToIg(palette);
+} else {
+    console.log('and we are done');
 }

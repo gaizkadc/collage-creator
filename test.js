@@ -2,6 +2,7 @@ const {
     createCanvas
 } = require('canvas')
 const fs = require('fs');
+require('dotenv').config();
 
 const drawImage = (palette) => {
     const testImageSize = 1000;
@@ -42,9 +43,9 @@ const drawImage = (palette) => {
     context.fillRect(-3 * testImageSize / 8, -1 * testImageSize / 8, 3 * testImageSize / 4, testImageSize / 4);
 
 
-    const buffer = canvas.toBuffer('image/png');
+    const buffer = canvas.toBuffer('image/' + process.env.FORMAT);
 
-    fs.writeFileSync('./test.png', buffer);
+    fs.writeFileSync('./test.' + process.env.FORMAT, buffer);
 }
 
 function drawBackground(context, palette, testImageSize) {
