@@ -17,7 +17,7 @@ const postToIg = (palette) => {
     igCaption = generateIgCaption(palette);
     console.log(igCaption);
 
-    collage = 'collage.jpg';
+    collage = 'collage.' + process.env.FORMAT;
 
     ;
     (async () => {
