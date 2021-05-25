@@ -8,7 +8,6 @@ const ig = require('./igUtils');
 
 console.log('getting image properties...');
 const imageProperties = iu.getImageProperties();
-console.log('image properties: ' + imageProperties);
 
 console.log('creating palette...');
 const palette = iu.createPalette(imageProperties.grayscale);
