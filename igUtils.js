@@ -67,8 +67,8 @@ function getFormattedDate(date) {
     let year = date.getFullYear();
     let month = (1 + date.getMonth()).toString().padStart(2, '0');
     let day = date.getDate().toString().padStart(2, '0');
-    let hour = date.getHours().toString();
-    let minute = date.getMinutes().toString();
+    let hour = (date.getHours()<10?'0':'') + date.getHours();
+    let minute = (date.getMinutes()<10?'0':'') + date.getMinutes();
 
     return year + month + day + ' | ' + hour + ':' + minute;
 }
