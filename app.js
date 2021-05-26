@@ -1,20 +1,18 @@
 require('dotenv').config();
 
-const iu = require('./imageUtils');
-const du = require('./drawUtils');
+import { Collage } from './collage'
+
 const ig = require('./igUtils');
 
-// MAIN
+console.log('creating canvas...');
+const canvas = createCanvas(this.width, this.height);
+const ctx = canvas.getContext('2d');
 
-console.log('getting image properties...');
-const imageProperties = iu.getImageProperties();
+console.log('getting pieces...')
+// TODO: get pieces
 
-console.log('creating palette...');
-const palette = iu.createPalette(imageProperties.grayscale);
-console.log('palette: ' + palette);
-
-console.log('drawing image...');
-du.drawImage(imageProperties, palette);
+console.log('getting collage properties...');
+var collage = new Collage(pieces, ctx);
 
 if (process.env.DRY_RUN == 1) {
     console.log('checking instagram login');

@@ -3,6 +3,8 @@ require('dotenv').config();
 const Instagram = require('instagram-web-api')
 const FileCookieStore = require('tough-cookie-filestore2')
 
+const utils = require('./utils');
+
 const username = process.env.USERNAME;
 const password = process.env.PASSWORD;
 
@@ -51,7 +53,7 @@ const checkIgLogin = () => {
 
 function generateIgCaption(palette) {
     const today = new Date();
-    const todayString = getFormattedDate(today);
+    const todayString = utils.getFormattedDate(today, true);
 
     const paletteString = generatePaletteString(palette);
 
@@ -61,16 +63,6 @@ function generateIgCaption(palette) {
 
 
     return igCaption;
-}
-
-function getFormattedDate(date) {
-    let year = date.getFullYear();
-    let month = (1 + date.getMonth()).toString().padStart(2, '0');
-    let day = date.getDate().toString().padStart(2, '0');
-    let hour = (date.getHours()<10?'0':'') + date.getHours();
-    let minute = (date.getMinutes()<10?'0':'') + date.getMinutes();
-
-    return year + month + day + ' | ' + hour + ':' + minute;
 }
 
 function generatePaletteString(palette) {
