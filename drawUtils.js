@@ -22,7 +22,7 @@ const drawImage = (imageProperties, palette) => {
             if (i == coloredPiecePosition[0] && j == coloredPiecePosition[1] && imageProperties.grayscale && process.env.COLORED_PIECE == 1) {
                 const genRandHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
 
-                const coloredPalette = [palette[0], palette[1], '#' + genRandHex(6)];
+                const coloredPalette = [palette[0], '#' + genRandHex(6)];
 
                 console.log('colored palette: ' + coloredPalette);
 
