@@ -11,12 +11,25 @@ const drawImage = (imageProperties, palette) => {
     const horizontalPieces = imageProperties.width / imageProperties.piece;
     const verticalPieces = imageProperties.height / imageProperties.piece;
 
+    const coloredPiecePosition = [Math.floor(Math.random() * horizontalPieces), Math.floor(Math.random() * verticalPieces)];
+
     const figures = [drawFigure0, drawFigure1, drawFigure2, drawFigure3, drawFigure4, drawFigure5, drawFigure6, drawFigure7];
 
     for (i = 0; i < horizontalPieces; i++) {
         for (j = 0; j < verticalPieces; j++) {
             const figureIndex = Math.floor(Math.random() * figures.length);
-            figures[figureIndex](imageProperties, context, palette, i, j);
+
+            if (i == coloredPiecePosition[0] && j == coloredPiecePosition[1] && imageProperties.grayscale && process.env.COLORED_PIECE == 1) {
+                const genRandHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+
+                const coloredPalette = [palette[0], palette[1], '#' + genRandHex(6)];
+
+                console.log('colored palette: ' + coloredPalette);
+
+                drawFigure6(imageProperties, context, coloredPalette, i, j);
+            } else {
+                figures[figureIndex](imageProperties, context, palette, i, j);
+            }
         }
     }
 

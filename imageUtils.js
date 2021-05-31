@@ -38,7 +38,7 @@ const createPalette = (grayscale) => {
     const paletteSize = 3;
     const palette = [];
     const colorHexSize = 6;
-    const genRandHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('')
+    const genRandHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
 
     if (grayscale) {
         do {
