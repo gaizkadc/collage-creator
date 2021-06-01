@@ -26,11 +26,17 @@ const getImageProperties = () => {
         grayscale = true;
     }
 
+    var accentedPiece = false;
+    if (process.env.COLORED_PIECE == 1) {
+        accentedPiece = true;
+    }
+
     return {
         width: width,
         height: height,
         piece: pieceSize,
-        grayscale: grayscale
+        grayscale: grayscale,
+        accentedPiece: accentedPiece
     };
 }
 
@@ -53,7 +59,9 @@ const createPalette = (grayscale) => {
         }
     }
 
-    return palette;
+    const accentColor = '#' + genRandHex(colorHexSize);
+
+    return [palette, accentColor];
 };
 
 exports.getImageProperties = getImageProperties;

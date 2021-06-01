@@ -6,7 +6,7 @@ const FileCookieStore = require('tough-cookie-filestore2')
 const username = process.env.USERNAME;
 const password = process.env.PASSWORD;
 
-const postToIg = (palette) => {
+const postToIg = (palette, accentColor) => {
     const cookieStore = new FileCookieStore('./cookies.json')
     const client = new Instagram({
         username,
@@ -14,7 +14,7 @@ const postToIg = (palette) => {
         cookieStore
     })
 
-    igCaption = generateIgCaption(palette);
+    igCaption = generateIgCaption(palette, accentColor);
     console.log(igCaption);
 
     collage = 'collage.' + process.env.FORMAT;
@@ -49,11 +49,11 @@ const checkIgLogin = () => {
     })()
 };
 
-function generateIgCaption(palette) {
+function generateIgCaption(palette, accentColor) {
     const today = new Date();
     const todayString = getFormattedDate(today);
 
-    const paletteString = generatePaletteString(palette);
+    const paletteString = generatePaletteString(palette, accentColor);
 
     const hashtags = '\n#collageoftheday #cotd #collageart #collageartwork #digitalcollage #patchwork #digitalpatchwork #grayscale #blacknwhite #bnw #blackandwhite #bw'
 
@@ -73,8 +73,12 @@ function getFormattedDate(date) {
     return year + month + day + ' | ' + hour + ':' + minute;
 }
 
-function generatePaletteString(palette) {
-    const paletteString = '\nPalette: [' + palette[0] + ', ' + palette[1] + ', ' + palette[2] + ']';
+function generatePaletteString(palette, accentColor) {
+    var paletteString = '\nPalette: [' + palette[0] + ', ' + palette[1] + ', ' + palette[2] + ']';
+
+    if (process.env.COLORED_PIECE == 1) {
+        paletteString += '\nAccent color: ' + accentColor;
+    }
 
     return paletteString;
 }

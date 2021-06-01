@@ -4,7 +4,7 @@ const {
 const fs = require('fs');
 require('dotenv').config();
 
-const drawImage = (imageProperties, palette) => {
+const drawImage = (imageProperties, palette, accentColor) => {
     const canvas = createCanvas(imageProperties.width, imageProperties.height);
     const context = canvas.getContext('2d');
 
@@ -19,12 +19,8 @@ const drawImage = (imageProperties, palette) => {
         for (j = 0; j < verticalPieces; j++) {
             const figureIndex = Math.floor(Math.random() * figures.length);
 
-            if (i == coloredPiecePosition[0] && j == coloredPiecePosition[1] && imageProperties.grayscale && process.env.COLORED_PIECE == 1) {
-                const genRandHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
-
-                const coloredPalette = [palette[0], '#' + genRandHex(6)];
-
-                console.log('colored palette: ' + coloredPalette);
+            if (i == coloredPiecePosition[0] && j == coloredPiecePosition[1] && imageProperties.grayscale && imageProperties.accentedPiece) {
+                const coloredPalette = [palette[0], accentColor];
 
                 drawFigure6(imageProperties, context, coloredPalette, i, j);
             } else {
