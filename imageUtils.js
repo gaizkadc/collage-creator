@@ -44,7 +44,7 @@ const createPalette = (grayscale) => {
     const paletteSize = 3;
     const palette = [];
 
-    const intPalette = []
+    var intPalette = []
 
     const getRandomInt = max => Math.floor(Math.random() * max);
     const paletteMax = 127;
@@ -54,6 +54,8 @@ const createPalette = (grayscale) => {
 
     if (grayscale) {
         do {
+            intPalette = [];
+
             for (i = 0; i < paletteSize; i++) {
                 var greyTone = getRandomInt(paletteMax);
                 intPalette.push(greyTone);
