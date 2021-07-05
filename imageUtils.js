@@ -38,21 +38,32 @@ const getImageProperties = () => {
         grayscale: grayscale,
         accentedPiece: accentedPiece
     };
-}
+};
 
 const createPalette = (grayscale) => {
     const paletteSize = 3;
     const palette = [];
+
+    const intPalette = []
+
+    const getRandomInt = max => Math.floor(Math.random() * max);
+    const paletteMax = 127;
+
     const colorHexSize = 6;
     const genRandHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
 
     if (grayscale) {
         do {
             for (i = 0; i < paletteSize; i++) {
-                var greyTone = genRandHex(colorHexSize).substr(0, 2).repeat(3);
-                palette.push('#' + greyTone);
+                var greyTone = getRandomInt(paletteMax);
+                intPalette.push(greyTone);
             }
-        } while (palette[0] == palette[1] || palette[0] == palette[2] || palette[1] == palette[2]);
+
+            intPalette.sort((a, b) => a - b);
+        } while (intPalette[1] >= intPalette[0] + 15 && intPalette[2] >= intPalette[1] + 15);
+
+        intPalette.forEach(greyTone => palette.push('#' + greyTone.toString(16).repeat(3)));
+
     } else {
         for (i = 0; i < paletteSize; i++) {
             palette.push('#' + genRandHex(colorHexSize));
