@@ -62,7 +62,8 @@ const createPalette = (grayscale) => {
             }
 
             intPalette.sort((a, b) => a - b);
-        } while (intPalette[1] >= intPalette[0] + 15 && intPalette[2] >= intPalette[1] + 15);
+
+        } while (intPalette[1] < intPalette[0] + 15 || intPalette[2] < intPalette[1] + 15);
 
         intPalette.forEach(greyTone => palette.push('#' + greyTone.toString(16).repeat(3)));
 
