@@ -65,7 +65,7 @@ const createPalette = (grayscale) => {
 
         } while (intPalette[1] < intPalette[0] + 15 || intPalette[2] < intPalette[1] + 15);
 
-        intPalette.forEach(greyTone => palette.push('#' + greyTone.toString(16).repeat(3)));
+        intPalette.forEach(greyTone => palette.push('#' + ("00" + greyTone.toString(16)).substr(-2).repeat(3)));
 
     } else {
         for (i = 0; i < paletteSize; i++) {
